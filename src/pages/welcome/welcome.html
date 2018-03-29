@@ -1,0 +1,22 @@
+<ion-content padding id="welcome">
+
+    <ion-img src="images/jpjlogo.png"></ion-img>
+
+    <ion-list>
+
+        <ion-item>
+          <ion-label>ID Pengguna</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
+      
+        <ion-item>
+          <ion-label>Katalaluan</ion-label>
+          <ion-input type="password"></ion-input>
+        </ion-item>
+        
+        <button ion-button block color="block1" (click)="login()">Log Masuk</button>
+        <button ion-button color="light" clear (click)="forgotpswd()">Lupa Kata Laluan</button>
+        <button ion-button float-right color="light" clear (click)="signup()">Daftar</button>
+      </ion-list>
+      
+</ion-content>

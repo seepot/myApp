@@ -1,0 +1,67 @@
+<!--
+  Generated template for the AddPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar  color="block1">
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+    <ion-title>Aduan Baru</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding id="add">
+    <ion-card color="dark">
+
+        <ion-card-content>
+            Gagal mematuhi lampu isyarat merah
+        </ion-card-content>
+      
+      </ion-card>
+  <ion-list>
+        <ion-item (click)="getImage()">
+          <h4>Image</h4>
+          <img src="{{imageFileName}}" *ngIf="imageFileName" alt="Ionic File" width="300" />
+        </ion-item>
+    <!-- <ion-item>
+      <ion-label floating>Kesalahan</ion-label>
+      <ion-select [(ngModel)]="kesalahan" interface="action-sheet">
+        <ion-option value="salah1">Gagal mematuhi lampu isyarat merah</ion-option>
+        <ion-option value="salah2">Memotong garisan berkembar</ion-option>
+        <ion-option value="salah3">Menggunakan telefon bimbit semasa memandu</ion-option>
+        <ion-option value="salah4">Memandu di lorong kecemasan</ion-option>
+        <ion-option value="salah5">Tidak memakai tali pinggang keledar</ion-option>
+        <ion-option value="salah6">Memandu di lorong kanan secara berterusan (kenderaan barangan)</ion-option>
+        <ion-option value="salah7">Syarikat bas tidak mempunyai pemandu kedua bagi perjalanan melebihi 4 jam</ion-option>
+      </ion-select>
+    </ion-item> -->
+    <ion-item>
+      <ion-label floating>Tarikh</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="myDate"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Masa</ion-label>
+      <ion-datetime displayFormat="h:mm A"   [(ngModel)]="myDate"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Lokasi</ion-label>
+      <ion-input type="text" [(ngModel)]="currLoc" (click)="getlocation()"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>No Kenderaan</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Catatan/Maklumat Tambahan</ion-label>
+      <ion-textarea></ion-textarea>
+    </ion-item>
+  </ion-list>
+  <button ion-button color="light" (click)="save()">Simpan</button>
+  <button ion-button color="block1" (click)="submit()">Hantar</button>
+</ion-content>
