@@ -25,18 +25,18 @@ export class HomePage {
   public photos : any;
   public base64Image : string;
 
-  kesalahan: Array<{ title: string}>;
+  kesalahan: Array<{ id: string, title: string}>;
 
   constructor(private afAuth: AngularFireAuth, private toast: ToastController, private camera1: Camera,
     public navCtrl: NavController, public alertCtrl: AlertController) {
 
       this.kesalahan = [
-        { title: "gagal mematuhi lampu isyarat merah"},
-        { title: "memotong garisan berkembar"},
-        { title: "menggunakan telefon bimbit semasa memandu"},
-        { title: "memandu di lorong kecemasan"},
-        { title: "tidak memakai tali pinggang keledar"},
-        { title: "bas tiada pemandu kedua bagi perjalanan melebihi 4 jam"}
+        { id: "1", title: "gagal mematuhi lampu isyarat merah"},
+        { id: "2", title: "memotong garisan berkembar"},
+        { id: "3", title: "menggunakan telefon bimbit semasa memandu"},
+        { id: "4", title: "memandu di lorong kecemasan"},
+        { id: "5", title: "tidak memakai tali pinggang keledar"},
+        { id: "6", title: "bas tiada pemandu kedua bagi perjalanan melebihi 4 jam"}
       ];
   }
 

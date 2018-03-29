@@ -1,12 +1,21 @@
 <ion-menu [content]="content">
         
         <ion-content  id="app">
-            <ion-card>
-                <img src="images/jpjlogo.png"/>
-              </ion-card>
+           
           <ion-list >
+              <button ion-item>
+                <ion-grid >
+                  <ion-row center>
+                    <ion-col><img width="80"  src="images/jpjlogo1.png"/></ion-col>
+                    <ion-col justify-content="center"> <h2>Hi User</h2>
+                      <p>Selamat Datang</p></ion-col>
+                  </ion-row>
+                </ion-grid>
+                
+               
+              </button>
             <button menuClose ion-item *ngFor="let p of pages" [class.activeHighlight]=checkActive(p) (click)="openPage(p)">
-              {{p.title}}
+              <h3>{{p.title}}</h3>
             </button>
           </ion-list>
         </ion-content>

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, ToastController, DateTime } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, LoadingController, ToastController, DateTime, ViewController } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Geolocation } from '@ionic-native/geolocation';
@@ -18,6 +19,10 @@ export class AddPage {
   imageFileName:any;
   myDate: String = new Date().toISOString();
   currLoc: any;
+  @ViewChild('fileInput') fileInput;
+  isReadyToSave: boolean;
+  item: any;
+  form: FormGroup;
 
   location: {
     latitude: number,
@@ -26,6 +31,7 @@ export class AddPage {
   
   constructor(
     private transfer: FileTransfer,
+    public viewCtrl: ViewController, formBuilder: FormBuilder,
     private geolocation: Geolocation,
     public navCtrl: NavController, 
     private camera: Camera,
@@ -35,7 +41,21 @@ export class AddPage {
 
   ) {
     //this.myDate = moment().
-    this.currLoc = this.geolocation.getCurrentPosition;
+    //this.currLoc = this.geolocation.getCurrentPosition;
+
+    this.form = formBuilder.group({
+      profilePic: [''],
+      tarikh: [''],
+      masa: [''],
+      lokasi: [''],
+      nokenderaan: [''],
+      catatan: [''],
+    });
+
+    // Watch the form for changes, and
+    this.form.valueChanges.subscribe((v) => {
+      this.isReadyToSave = this.form.valid;
+    });
   }
 
   ionViewDidLoad() {
@@ -160,5 +180,36 @@ export class AddPage {
       console.log(val)
     })
   }  */
+
+  getPicture() {
+    if (Camera['installed']()) {
+      this.camera.getPicture({
+        destinationType: this.camera.DestinationType.DATA_URL,
+        targetWidth: 96,
+        targetHeight: 96
+      }).then((data) => {
+        this.form.patchValue({ 'profilePic': 'data:image/jpg;base64,' + data });
+      }, (err) => {
+        alert('Unable to take photo');
+      })
+    } else {
+      this.fileInput.nativeElement.click();
+    }
+  }
+
+  processWebImage(event) {
+    let reader = new FileReader();
+    reader.onload = (readerEvent) => {
+
+      let imageData = (readerEvent.target as any).result;
+      this.form.patchValue({ 'profilePic': imageData });
+    };
+
+    reader.readAsDataURL(event.target.files[0]);
+  }
+
+  getProfileImageStyle() {
+    return 'url(' + this.form.controls['profilePic'].value + ')'
+  }
 
 }

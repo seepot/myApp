@@ -23,18 +23,19 @@ export class MyApp {
   rootPage:any = WelcomePage;
   activePage: any;
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{icon: string, title: string, component: any}>;
 
   constructor(public platform: Platform){
     this.initializeApp();
 
     this.pages = [
-      { title: 'Aduan Baru', component: HomePage },
-      { title: 'Draf', component: DrafPage },
-      { title: 'Hantar', component: ListPage },
-      { title: 'Arkib', component: ArkibPage },
-      { title: 'Profail', component: HomePage },
-      { title: 'Log Keluar', component: HomePage }
+      { icon: 'bookmark', title: 'Aduan Baru', component: HomePage },
+      { icon: 'bookmark', title: 'Draf', component: DrafPage },
+      { icon: 'bookmark', title: 'Hantar', component: ListPage },
+      { icon: 'bookmark', title: 'Arkib', component: ArkibPage },
+      { icon: 'bookmark', title: 'Peti Masuk', component: ArkibPage },
+      { icon: 'bookmark', title: 'Profail', component: HomePage },
+      { icon: 'bookmark', title: 'Log Keluar', component: HomePage }
     ];
 
     this.activePage = this.pages[0];
