@@ -1,22 +1,13 @@
-<ion-content padding id="welcome">
-
-    <ion-img src="images/jpjlogo.png"></ion-img>
-
-    <ion-list>
-
-        <ion-item>
-          <ion-label>ID Pengguna</ion-label>
-          <ion-input type="text"></ion-input>
-        </ion-item>
-      
-        <ion-item>
-          <ion-label>Katalaluan</ion-label>
-          <ion-input type="password"></ion-input>
-        </ion-item>
-        
-        <button ion-button block color="block1" (click)="login()">Log Masuk</button>
-        <button ion-button color="light" clear (click)="forgotpswd()">Lupa Kata Laluan</button>
-        <button ion-button float-right color="light" clear (click)="signup()">Daftar</button>
-      </ion-list>
-      
-</ion-content>
+<ion-content scroll="false" >
+    <div class="splash-bg"></div>
+    <div class="splash-info">
+      <div class="splash-logo"></div>
+      <div class="splash-intro">
+       Sistem Aduan Trafik
+      </div>
+    </div>
+    <div padding>
+      <button ion-button block (click)="signup()">DAFTAR</button>
+      <button ion-button block (click)="login()" class="login">LOG MASUK</button>
+    </div>
+  </ion-content>

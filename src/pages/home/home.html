@@ -12,10 +12,10 @@
 
 <ion-content padding id="home">
     <ion-list *ngFor="let p of kesalahan; let i = index">
-        <ion-card color="secondary">
+        <ion-card color="secondary" >
 
             <ion-card-content (click)="doPrompt()" >
-                {{p.title}} 
+                <h1>{{p.title}}</h1>
             </ion-card-content>
           
           </ion-card>
@@ -25,11 +25,11 @@
   
   
   <!--<button ion-button color="dark"  (click)="logout()">Log Keluar</button>
-  <button ion-button color="dark"  (click)="camera()">Camera</button>-->
+  <button ion-button color="dark"  (click)="camera()">Camera</button>
   <ion-fab right bottom>
     <button ion-fab color="block1" (click)="add()"><ion-icon name="add"></ion-icon></button>
 </ion-fab>
-
+-->
 
 </ion-content>
 

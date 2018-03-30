@@ -11,6 +11,10 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { DrafPage } from '../pages/draf/draf';
 import { ArkibPage } from '../pages/arkib/arkib';
+import { InboxPage } from '../pages/inbox/inbox';
+import { SigninPage } from '../pages/signin/signin';
+
+import { ProfilPage } from '../pages/profil/profil';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { initializeApp } from 'firebase';
 
@@ -33,9 +37,9 @@ export class MyApp {
       { icon: 'bookmark', title: 'Draf', component: DrafPage },
       { icon: 'bookmark', title: 'Hantar', component: ListPage },
       { icon: 'bookmark', title: 'Arkib', component: ArkibPage },
-      { icon: 'bookmark', title: 'Peti Masuk', component: ArkibPage },
-      { icon: 'bookmark', title: 'Profail', component: HomePage },
-      { icon: 'bookmark', title: 'Log Keluar', component: HomePage }
+      { icon: 'bookmark', title: 'Peti Masuk', component: InboxPage },
+      { icon: 'bookmark', title: 'Profile', component: ProfilPage },
+      { icon: 'bookmark', title: 'Log Keluar', component: WelcomePage }
     ];
 
     this.activePage = this.pages[0];

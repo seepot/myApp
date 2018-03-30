@@ -1,0 +1,36 @@
+<ion-header>
+    <ion-navbar color="block1">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Profil</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+
+<ion-content padding>
+    <ion-card class="profile-top">
+        <ion-row>
+          <ion-col>
+            <div class="profile-photo">
+              <img src="assets/img/noavatar.png">
+            </div>
+            <button ion-button (click)="changeProfile()" block clear color="royal">Change profile picture</button>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+      <ion-list class="profile-detail">
+        <ion-row>
+          <ion-col no-padding>
+            <ion-item>
+              <h4>About Me</h4>
+              <p>Ali Abu</p>
+            </ion-item>
+          </ion-col>
+        </ion-row>    
+        <ion-item icon-left>
+          <h4><ion-icon name="mail"></ion-icon>Email Address</h4>
+          <p>aliabu@gmail.com</p>
+        </ion-item>
+    </ion-list>
+</ion-content>

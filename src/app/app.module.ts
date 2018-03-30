@@ -10,6 +10,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 
 import { WelcomePage } from '../pages/welcome/welcome';
 import { LoginPage } from '../pages/login/login';
+import { SigninPage } from '../pages/signin/signin';
 import { SignupPage } from '../pages/signup/signup';
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -26,6 +27,8 @@ import { VideoPage } from '../pages/video/video';
 import { ConfirmationPage } from '../pages/confirmation/confirmation';
 import { DrafPage } from '../pages/draf/draf';
 import { ArkibPage } from '../pages/arkib/arkib';
+import { InboxPage } from '../pages/inbox/inbox';
+import { ProfilPage } from '../pages/profil/profil';
  
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -50,13 +53,16 @@ import { NativeMapsProvider } from '../providers/native-maps/native-maps';
     ListPage,
     CameraPage,
     RegisterPage,
+    SigninPage,
     PasswordPage,
     Option1Page,
     PicturePage,
     VideoPage,
     ConfirmationPage,
     DrafPage,
-    ArkibPage
+    ArkibPage,
+    InboxPage,
+    ProfilPage
   ],
   imports: [
     BrowserModule,
@@ -77,13 +83,16 @@ import { NativeMapsProvider } from '../providers/native-maps/native-maps';
     ListPage,
     CameraPage,
     RegisterPage,
+    SigninPage,
     PasswordPage,
     Option1Page,
     PicturePage,
     VideoPage,
     ConfirmationPage,
     DrafPage,
-    ArkibPage
+    ArkibPage,
+    InboxPage,
+    ProfilPage
   ],
   providers: [
     StatusBar,

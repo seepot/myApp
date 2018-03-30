@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { LoginPage } from '../login/login';
 import { SignupPage } from '../signup/signup';
+import { SigninPage } from '../signin/signin';
 import { TabsPage } from '../tabs/tabs';
 import { HomePage } from '../home/home';
 
@@ -28,7 +29,7 @@ export class WelcomePage {
   }
 
   login(){
-    this.navCtrl.setRoot(HomePage);
+    this.navCtrl.push(SigninPage);
   }
   
   signup(){
