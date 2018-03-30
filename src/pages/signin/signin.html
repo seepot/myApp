@@ -1,25 +1,27 @@
-<ion-header>
-    <ion-navbar color="block1">
-    </ion-navbar>
-  </ion-header>
-<ion-content padding id="signin">
+<ion-content scroll="false" >
+    <div class="splash-bg"></div>
+    <div class="splash-info">
+      <div class="splash-logo"></div>
+      <div class="splash-intro">
+       Sistem Aduan Trafik
+      </div>
+    </div>
+    <div padding>
+        <ion-list>
 
-    <div style="text-align: center; margin-bottom: 20px"><img width="128"  src="../assets/img/jpjlogo1.png"/></div>
-
-    <ion-list>
-
-        <ion-item>
-          <ion-label>ID Pengguna</ion-label>
-          <ion-input type="text"></ion-input>
-        </ion-item>
-      
-        <ion-item>
-          <ion-label>Katalaluan</ion-label>
-          <ion-input type="password"></ion-input>
-        </ion-item>
-        
-        <button ion-button block color="block1" (click)="login()">Log Masuk</button>
-        <button ion-button block color="light" clear (click)="forgotpswd()">Lupa Kata Laluan</button>
-      </ion-list>
-      
-</ion-content>
+            <ion-item>
+              <ion-label>ID Pengguna</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+          
+            <ion-item>
+              <ion-label>Katalaluan</ion-label>
+              <ion-input type="password"></ion-input>
+            </ion-item>
+            
+            <button ion-button block (click)="login()" class="login">Log Masuk</button>
+            <button ion-button block color="light" clear (click)="forgotpswd()">Lupa Kata Laluan</button>
+         
+          </ion-list>
+    </div>
+  </ion-content>
