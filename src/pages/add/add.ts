@@ -8,6 +8,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { ConfirmationPage } from '../confirmation/confirmation';
 import { ListPage } from '../list/list';
+import { DrafPage } from '../draf/draf';
 
 @IonicPage()
 @Component({
@@ -37,7 +38,8 @@ export class AddPage {
     private camera: Camera,
     public loadingCtrl: LoadingController,
     public navParams: NavParams,
-    public toastCtrl: ToastController
+    public toastCtrl: ToastController,
+   
 
   ) {
     //this.myDate = moment().
@@ -77,11 +79,11 @@ export class AddPage {
       this.imageURI = imageData;
     }, (err) => {
       console.log(err);
-      this.presentToast(err);
+      //this.presentToast(err);
     });
   }
 
-  uploadFile() {
+  /* uploadFile() {
     let loader = this.loadingCtrl.create({
       content: "Uploading..."
     });
@@ -131,9 +133,9 @@ export class AddPage {
         });
     }
   }
-
+ */
   save(){
-    this.navCtrl.setRoot(ListPage);
+    this.navCtrl.setRoot(DrafPage);
   }
 
   submit(){
@@ -182,7 +184,8 @@ export class AddPage {
   }  */
 
   getPicture() {
-    if (Camera['installed']()) {
+   // this.fileInput.nativeElement.click();
+     if (Camera['installed']()) {
       this.camera.getPicture({
         destinationType: this.camera.DestinationType.DATA_URL,
         targetWidth: 96,
@@ -194,7 +197,7 @@ export class AddPage {
       })
     } else {
       this.fileInput.nativeElement.click();
-    }
+    } 
   }
 
   processWebImage(event) {
@@ -211,5 +214,7 @@ export class AddPage {
   getProfileImageStyle() {
     return 'url(' + this.form.controls['profilePic'].value + ')'
   }
+
+  
 
 }

@@ -21,10 +21,22 @@
     color: #FFFFFF;
 }
 
-.alertcss{
-    color:#e74c3c;
-    }
+.alertCustomCss {
+  color: white; // text color for basic alerts
+  button {
+      color: white !important;
+      background-color: color($colors, secondary, base) !important;
+      font-family: 'Roboto';
+  }
+  .alert-message {
+      color: white; // text color for confirm alerts
 
+  }
+  .alert-wrapper {
+      background-color: color($colors, dark, base);
+      margin-top:0px;
+  }
+}
  #app{   background: color($colors, energy);
  }
 

@@ -29,6 +29,7 @@ import { DrafPage } from '../pages/draf/draf';
 import { ArkibPage } from '../pages/arkib/arkib';
 import { InboxPage } from '../pages/inbox/inbox';
 import { ProfilPage } from '../pages/profil/profil';
+import { ModalviewPage } from '../pages/modalview/modalview';
  
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -62,7 +63,8 @@ import { NativeMapsProvider } from '../providers/native-maps/native-maps';
     DrafPage,
     ArkibPage,
     InboxPage,
-    ProfilPage
+    ProfilPage,
+    ModalviewPage
   ],
   imports: [
     BrowserModule,
@@ -92,7 +94,8 @@ import { NativeMapsProvider } from '../providers/native-maps/native-maps';
     DrafPage,
     ArkibPage,
     InboxPage,
-    ProfilPage
+    ProfilPage,
+    ModalviewPage
   ],
   providers: [
     StatusBar,

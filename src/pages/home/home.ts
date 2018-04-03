@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ToastController, Tabs, AlertController } from 'ionic-angular';
+import { NavController, ToastController, Tabs, AlertController, Platform, ActionSheetController } from 'ionic-angular';
 import {Camera, CameraOptions} from '@ionic-native/camera';
 
 import { WelcomePage } from '../welcome/welcome';
@@ -27,7 +27,9 @@ export class HomePage {
 
   kesalahan: Array<{ id: string, title: string}>;
 
-  constructor(private afAuth: AngularFireAuth, private toast: ToastController, private camera1: Camera,
+  constructor(private afAuth: AngularFireAuth, 
+    private toast: ToastController, private camera1: Camera,
+    public platform: Platform,  public actionsheetCtrl: ActionSheetController,
     public navCtrl: NavController, public alertCtrl: AlertController) {
 
       this.kesalahan = [
@@ -61,7 +63,8 @@ export class HomePage {
 
   doPrompt() {
     let prompt = this.alertCtrl.create({
-      cssClass: 'alertcss',
+      cssClass: 'alertCustomCss',
+      title: 'upload dari?',
       buttons: [
         {
           text: 'Photo',
@@ -127,5 +130,45 @@ export class HomePage {
             elements[key].style.display = 'none';
         });
     } */
+  }
+
+  openMenu() {
+    let actionSheet = this.actionsheetCtrl.create({
+      //title: 'Albums',
+      cssClass: 'action-sheets-basic-page',
+      buttons: [
+        {
+          text: 'Add Photo / Video',
+          icon: !this.platform.is('ios') ? 'image' : null,
+          handler: () => {
+            this.navCtrl.push(AddPage);
+          }
+        },
+        {
+          text: 'Take Photo',
+          icon: !this.platform.is('ios') ? 'md-camera' : null,
+          handler: () => {
+            this.takePhoto();
+          }
+        },
+        {
+          text: 'Take Video',
+          icon: !this.platform.is('ios') ? 'videocam' : null,
+          handler: () => {
+            this.takePhoto();
+          }
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel', // will always sort to be on the bottom
+          icon: !this.platform.is('ios') ? 'close' : null,  
+
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    actionSheet.present();
   }
 }

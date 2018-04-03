@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the ConfirmationPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { DrafPage } from '../draf/draf';
+import { ListPage } from '../list/list';
 
 @IonicPage()
 @Component({
@@ -14,12 +9,20 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'confirmation.html',
 })
 export class ConfirmationPage {
-
+  myDate: String = new Date().toISOString();
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ConfirmationPage');
+  }
+
+  save(){
+    this.navCtrl.setRoot(DrafPage);
+  }
+
+  submit(){
+    this.navCtrl.setRoot(ListPage);
   }
 
 }

@@ -1,10 +1,11 @@
 page-home {
     #home{
-        background: color($colors, energy);
+        background: color($colors, light);
         h1{
-            font-size: 15px;
-            margin: 10px 10px;
-            color: #ffffff;
+            font-size: 13px;
+            margin: 0px 0px;
+            text-transform: capitalize;
+            color: map-get($map: $colors, $key: primary);
         }
 
         height: 100%;
@@ -23,10 +24,38 @@ page-home {
             flex: 0 0 25%;
             max-width: 25%;
             text-align: center;
-            padding: 10px 5px;
+            padding: 5px 5px;
           }
 
-        
+          .list .item {
+            background-color: map-get($map: $colors, $key: energy);
+            border-width: 0px;
+            border-style: ridge;
+            border-color: #C0C0C0;
+          }
+          
+          .card {
+            background-color: map-get($map: $colors, $key: energy);
+            //color: map-get($map: $colors, $key: primary);
+            //color : #e74c3c;
+            margin-bottom:30px;
+            border-width: 0px;
+            
+          }
+
+          .alertCustomCss {
+            color: white; // text color for basic alerts
+            button {
+                color: white !important;
+                background-color: color($colors, secondary, base) !important;
+            }
+            .alert-message {
+                color: white; // text color for confirm alerts
+            }
+            .alert-wrapper {
+                background-color: color($colors, dark, base);
+            }
+          }
     }
 }
 
@@ -48,4 +77,21 @@ page-home {
   }
   .alertcss{
     color:#e74c3c;
+    }
+
+    .action-sheets-basic-page {
+      //font-size: 70px;
+      .ion-md-share {
+        color: #ED4248;
+      }
+      .ion-md-arrow-dropright-circle {
+        color: #508AE4;
+      }
+      .ion-md-heart-outline {
+        color: #31D55F;
+      }
+      .action-sheet-cancel ion-icon,
+      .action-sheet-destructive ion-icon {
+        color: #757575;
+      }
     }

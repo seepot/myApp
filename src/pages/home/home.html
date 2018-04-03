@@ -11,15 +11,17 @@
 
 
 <ion-content padding id="home">
-    <ion-list *ngFor="let p of kesalahan; let i = index">
-        <ion-card color="secondary" >
+    <ion-list *ngFor="let p of kesalahan; let i = index" class="list">
+          <ion-card>
 
-            <ion-card-content (click)="doPrompt()" >
+            <ion-card-content (click)="openMenu()" >
                 <h1>{{p.title}}</h1>
             </ion-card-content>
           
           </ion-card>
+
       </ion-list>
+
   <!--<h1>Selamat Datang ke Sistem Aduan Trafik JPJ</h1>-->
   
   

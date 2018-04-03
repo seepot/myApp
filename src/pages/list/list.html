@@ -11,7 +11,7 @@
 <ion-content padding id="list">
     <ion-list *ngFor="let p of aduan; let i = index">
         <ion-item-sliding >
-          <ion-item>
+          <ion-item (click)="openModal()">
             <h2>{{i+1}}) {{p.tarikh}}</h2>
             <p>{{p.title}}</p>
             <ion-badge item-end color="{{p.status}}"> {{p.status}}</ion-badge>
