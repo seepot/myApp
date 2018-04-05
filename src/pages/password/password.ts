@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { User } from "../../models/user";
 import { AngularFireAuth } from 'angularfire2/auth';
 import { LoginPage } from '../login/login';
+import { WelcomePage } from '../welcome/welcome';
 
 @IonicPage()
 @Component({
@@ -28,7 +29,7 @@ export class PasswordPage {
         const result = this.afAuth.auth.sendPasswordResetEmail(user.email);
         console.log(result);
 
-        this.navCtrl.setRoot(LoginPage);
+        this.navCtrl.setRoot(WelcomePage);
     }
     catch (e){
       console.error(e);

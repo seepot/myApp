@@ -6,13 +6,11 @@
               <button ion-item>
                 <ion-grid >
                   <ion-row center>
-                    <ion-col><img width="80"  src="../assets/img/jpjlogo1.png"/></ion-col>
-                    <ion-col justify-content="center"> <h2>Hi User</h2>
+                    <ion-col><img width="80"  src="../assets/img/noavatar.png"/></ion-col>
+                    <ion-col justify-content="center"> <h3>Hi {{getUser()}}</h3>
                       <p>Selamat Datang</p></ion-col>
                   </ion-row>
                 </ion-grid>
-                
-               
               </button>
             <button menuClose ion-item *ngFor="let p of pages" [class.activeHighlight]=checkActive(p) (click)="openPage(p)">
               <h3>{{p.title}}</h3>

@@ -30,15 +30,20 @@ import { ArkibPage } from '../pages/arkib/arkib';
 import { InboxPage } from '../pages/inbox/inbox';
 import { ProfilPage } from '../pages/profil/profil';
 import { ModalviewPage } from '../pages/modalview/modalview';
- 
+import { Test1Page } from '../pages/test1/test1';
+import { Form1Page } from '../pages/form1/form1';
+import { EditPage } from '../pages/edit/edit';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { FIREBASE_CONFIG } from "./app.firebase.config";
 import { MapsProvider } from '../providers/maps/maps';
 import { JsMapsProvider } from '../providers/js-maps/js-maps';
 import { NativeMapsProvider } from '../providers/native-maps/native-maps';
+import { PreloaderProvider } from '../providers/preloader/preloader';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -64,12 +69,17 @@ import { NativeMapsProvider } from '../providers/native-maps/native-maps';
     ArkibPage,
     InboxPage,
     ProfilPage,
-    ModalviewPage
+    ModalviewPage,
+    Test1Page,
+    Form1Page,
+    EditPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(FIREBASE_CONFIG)
+    AngularFireModule.initializeApp(FIREBASE_CONFIG),
+    AngularFireDatabaseModule,
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -95,7 +105,10 @@ import { NativeMapsProvider } from '../providers/native-maps/native-maps';
     ArkibPage,
     InboxPage,
     ProfilPage,
-    ModalviewPage
+    ModalviewPage,
+    Test1Page,
+    Form1Page,
+    EditPage
   ],
   providers: [
     StatusBar,
@@ -108,7 +121,9 @@ import { NativeMapsProvider } from '../providers/native-maps/native-maps';
     Geolocation,
     MapsProvider,
     JsMapsProvider,
-    NativeMapsProvider
+    NativeMapsProvider,
+    PreloaderProvider,
+    HttpClient
   ]
 })
 export class AppModule {

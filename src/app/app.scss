@@ -16,7 +16,7 @@
 // automatically applied to the <body> element in the app.
 
 .activeHighlight{
-    background-color: map-get($colors, 'secondary' );
+    background-color: map-get($colors, 'block1' );
     font-weight: bolder;
     color: #FFFFFF;
 }

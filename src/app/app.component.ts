@@ -13,29 +13,36 @@ import { DrafPage } from '../pages/draf/draf';
 import { ArkibPage } from '../pages/arkib/arkib';
 import { InboxPage } from '../pages/inbox/inbox';
 import { SigninPage } from '../pages/signin/signin';
+import { Form1Page } from '../pages/form1/form1';
 
 import { ProfilPage } from '../pages/profil/profil';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { initializeApp } from 'firebase';
 
+import { AngularFireAuth } from "angularfire2/auth";
+import { User } from "../models/user";
+import * as firebase from 'firebase/app';
+
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: 'app.html',
+  providers: [AngularFireAuth]
 })
 export class MyApp {
 
   @ViewChild(Nav) nav : Nav;
   rootPage:any = WelcomePage;
   activePage: any;
-
+  //user = {} as User;
   pages: Array<{icon: string, title: string, component: any}>;
+  private user: firebase.User;
 
-  constructor(public platform: Platform){
+  constructor(public platform: Platform, private afAuth: AngularFireAuth,){
     this.initializeApp();
 
     this.pages = [
       { icon: 'bookmark', title: 'Aduan Baru', component: HomePage },
       { icon: 'bookmark', title: 'Draf', component: DrafPage },
-      { icon: 'bookmark', title: 'Hantar', component: ListPage },
+      { icon: 'bookmark', title: 'Dihantar', component: ListPage },
       { icon: 'bookmark', title: 'Arkib', component: ArkibPage },
       { icon: 'bookmark', title: 'Peti Masuk', component: InboxPage },
       { icon: 'bookmark', title: 'Profile', component: ProfilPage },
@@ -43,6 +50,8 @@ export class MyApp {
     ];
 
     this.activePage = this.pages[0];
+
+    //console.log(this.user.email);
   }
   initializeApp(){
     this.platform.ready().then(() => {
@@ -50,19 +59,47 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
     //Statusbar.styleDefault();
     });
+
+    this.afAuth.authState.subscribe(user => {
+          this.user = user;
+    });
+
+    this.afAuth.authState
+    .subscribe(
+      user => {
+        if (user) {
+          this.rootPage = HomePage;
+        } else {
+          this.rootPage = WelcomePage;
+        }
+      },
+      () => {
+        this.rootPage = WelcomePage;
+      }
+);
   }
 
   openPage(page) {
     // navigate to the new page if it is not the current page
     //this.navCtrl.push(LoginPage);
-    this.nav.setRoot(page.component);
+    
+    
     this.activePage = page;
 
+    if(page.title == 'Log Keluar'){
+      this.afAuth.auth.signOut();
+      this.activePage = "";
+    }
+    this.nav.setRoot(page.component);
   }
+
 
   checkActive(page) {
     return page == this.activePage;
   }
 
+  getUser(){
+    return this.user && this.user.email;
+  }
   
 }

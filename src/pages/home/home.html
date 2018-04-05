@@ -14,7 +14,7 @@
     <ion-list *ngFor="let p of kesalahan; let i = index" class="list">
           <ion-card>
 
-            <ion-card-content (click)="openMenu()" >
+            <ion-card-content (click)="openMenu(p.id)" >
                 <h1>{{p.title}}</h1>
             </ion-card-content>
           

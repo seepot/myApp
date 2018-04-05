@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, ToastController, Tabs, AlertController, Platform, ActionSheetController } from 'ionic-angular';
-import {Camera, CameraOptions} from '@ionic-native/camera';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { WelcomePage } from '../welcome/welcome';
 import { SignupPage } from '../signup/signup';
 import { AddPage } from '../add/add';
@@ -28,7 +29,7 @@ export class HomePage {
   kesalahan: Array<{ id: string, title: string}>;
 
   constructor(private afAuth: AngularFireAuth, 
-    private toast: ToastController, private camera1: Camera,
+    private toastCtrl: ToastController, private camera: Camera,
     public platform: Platform,  public actionsheetCtrl: ActionSheetController,
     public navCtrl: NavController, public alertCtrl: AlertController) {
 
@@ -53,7 +54,7 @@ export class HomePage {
   add(){
     this.navCtrl.push(AddPage);
   }
-  camera(){
+  camera1(){
     this.navCtrl.push(CameraPage);
   }
 
@@ -89,22 +90,35 @@ export class HomePage {
     prompt.present();
   }
 
-  takePhoto(){
+  takePhoto(sourceType){
     const options : CameraOptions = {
-      quality: 50, // picture quality
-      destinationType: this.camera1.DestinationType.DATA_URL,
-      encodingType: this.camera1.EncodingType.JPEG,
-      mediaType: this.camera1.MediaType.PICTURE
+      quality: 100, // picture quality
+      sourceType: sourceType,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      correctOrientation: true
     }
-    this.camera1.getPicture(options) .then((imageData) => {
+    this.camera.getPicture(options) .then((imageData) => {
         this.base64Image = "data:image/jpeg;base64," + imageData;
         this.photos.push(this.base64Image);
         this.photos.reverse();
+        console.log(this.photos);
+   
       }, (err) => {
         console.log(err);
+        this.presentToast('Error while selecting image.');
       });
   }
 
+  private presentToast(text) {
+    let toast = this.toastCtrl.create({
+      message: text,
+      duration: 3000,
+      position: 'bottom'
+    });
+    toast.present();
+  }
   ionViewDidLoad() {
     
     /* this.afAuth.authState.subscribe( data => {
@@ -122,8 +136,7 @@ export class HomePage {
         }).present();
       }
     })
- */
-    /* let elements = document.querySelectorAll(".tabbar");
+   let elements = document.querySelectorAll(".tabbar");
 
     if (elements != null) {
         Object.keys(elements).map((key) => {
@@ -132,30 +145,41 @@ export class HomePage {
     } */
   }
 
-  openMenu() {
+  openMenu(id) {
+    console.log(id);
+    let data = { id: id };
+    console.log(data);
     let actionSheet = this.actionsheetCtrl.create({
       //title: 'Albums',
+      
       cssClass: 'action-sheets-basic-page',
       buttons: [
+        {
+          text: 'Form',
+          icon: !this.platform.is('ios') ? 'image' : null,
+          handler: () => {
+            this.navCtrl.push(AddPage,id);
+          }
+        },
         {
           text: 'Add Photo / Video',
           icon: !this.platform.is('ios') ? 'image' : null,
           handler: () => {
-            this.navCtrl.push(AddPage);
+            this.takePhoto(this.camera.PictureSourceType.PHOTOLIBRARY);
           }
         },
         {
           text: 'Take Photo',
           icon: !this.platform.is('ios') ? 'md-camera' : null,
           handler: () => {
-            this.takePhoto();
+            this.takePhoto(this.camera.PictureSourceType.CAMERA);
           }
         },
         {
           text: 'Take Video',
           icon: !this.platform.is('ios') ? 'videocam' : null,
           handler: () => {
-            this.takePhoto();
+            //this.takePhoto();
           }
         },
         {

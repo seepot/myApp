@@ -10,32 +10,54 @@
 
 <ion-content padding id="confirmation">
     <ion-list>
-        <ion-item><p>Gagal mematuhi lampu isyarat merah</p></ion-item>
+        <ion-item text-wrap><p>{{kesalahan}}</p></ion-item>
            
        <ion-item>
          <img height="80px" src="../assets/img/jpjlogo1.png">
        </ion-item>
+       <ion-item>
+         <h3>Tarikh</h3>
+         {{tarikh}}
+       </ion-item>
+       <ion-item>
+         <h3>Masa</h3>
+         {{masa}}
+       </ion-item>
+       <ion-item>
+         <h3>Lokasi</h3>
+         {{lokasi}}
+       </ion-item>
+       <ion-item>
+         <h3>No Kenderaan</h3>
+         {{nokenderaan}}
+       </ion-item>
+       <ion-item>
+         <h3>Catatan</h3>
+         {{catatan}}
+       </ion-item>
+       <!--
      <ion-item>
-       <ion-label>Tarikh</ion-label>
-       <ion-datetime disabled="true" displayFormat="DD/MM/YYYY" [(ngModel)]="myDate"></ion-datetime>
+       <ion-label stacked>Tarikh</ion-label>
+       <ion-datetime disabled="true" displayFormat="DD/MM/YYYY" [(ngModel)]="tarikh"></ion-datetime>
      </ion-item>
      <ion-item>
-       <ion-label>Masa</ion-label>
-       <ion-datetime float-left disabled="true" displayFormat="h:mm A"  [(ngModel)]="myDate"></ion-datetime>
+       <ion-label stacked>Masa</ion-label>
+       <ion-datetime float-left disabled="true"  displayFormat="h:mm A" [(ngModel)]="masa"></ion-datetime>
      </ion-item>
      <ion-item>
-       <ion-label>Lokasi</ion-label>
-       <ion-input type="text" disabled="true" value="Jalan Teknokrat 5, Cyberjaya"></ion-input>
+       <ion-label stacked>Lokasi</ion-label>
+       <ion-input type="text" disabled="true" [(ngModel)]="lokasi"></ion-input>
      </ion-item>
      <ion-item>
-       <ion-label>No Kenderaan</ion-label>
-       <ion-input type="text" disabled="true" value="ABC 1234" ></ion-input>
+       <ion-label stacked>No Kenderaan</ion-label>
+       <ion-input type="text" disabled="true" [(ngModel)]="nokenderaan" ></ion-input>
      </ion-item>
      <ion-item>
        <ion-label stacked>Catatan/Maklumat Tambahan</ion-label>
-       <ion-textarea disabled="true" value="tiada" ></ion-textarea>
+       <ion-textarea disabled="true" [(ngModel)]="catatan" ></ion-textarea>
  </ion-item>
+-->
    </ion-list>
-   <button ion-button color="light" (click)="save()">Simpan</button>
-   <button ion-button float-right color="block1" (click)="submit()">Hantar</button>
+   <!--<button ion-button color="light" (click)="save()">Simpan</button>-->
+   <button ion-button full color="block1" (click)="submit()">Hantar</button>
 </ion-content>

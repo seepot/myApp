@@ -14,7 +14,13 @@ $app-direction: ltr;
 
 @import "ionic.globals";
 
-
+/* ion-modal {
+  .modal-wrapper {
+      height: 90%;
+      width: 90%;
+  }
+}
+ */
 // Shared Variables
 // --------------------------------------------------
 // To customize the look and feel of this app, you can override
@@ -42,7 +48,7 @@ $colors: (
   base: #c0ff12,
   energy:     #f1efef,
   block1:     #FF8F00,
-  draf:       #05ff11,
+  Draf:       #05ff11,
   Hantar: #023456,
   Diterima: #ffd904,
   Ditolak: #fc0909,

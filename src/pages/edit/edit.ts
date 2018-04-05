@@ -15,10 +15,10 @@ import { DrafPage } from '../draf/draf';
 
 @IonicPage()
 @Component({
-  selector: 'page-add',
-  templateUrl: 'add.html',
+  selector: 'page-edit',
+  templateUrl: 'edit.html',
 })
-export class AddPage {
+export class EditPage {
   imageURI:any;
   imageFileName:any;
   myDate: String = new Date().toISOString();
@@ -67,16 +67,25 @@ export class AddPage {
     this.form.valueChanges.subscribe((v) => {
       this.isReadyToSave = this.form.valid;
     });
+
+
+    this.aduanRef = afDatabase.list('/aduan', 
+    ref => ref.orderByChild('id').equalTo(this.navParams.data));
+
+    this.aduan = this.aduanRef.valueChanges();
+    console.log(this.aduan);
+
+    //this.form.value.tarikh = this.aduan.tarikh;
   }
 
   ionViewDidLoad() {
     //this.findUserLocation();
     //this.id = this.navParams.get('data').value;
 
-    console.log(this.navParams.data);
+    //console.log(this.navParams.data);
     //console.log(this.navParams.get('id'));
-    this.id = this.navParams.data;
-    this.kesalahan = this.getKesalahanById(this.navParams.data);
+    //this.id = this.navParams.data;
+    //this.kesalahan = this.getKesalahanById(this.navParams.data);
 
   }
 
