@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ModalController, ViewController } 
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import { ModalviewPage } from '../modalview/modalview';
+import { PreloaderProvider } from '../../providers/preloader/preloader';
 
 @IonicPage()
 @Component({
@@ -18,6 +19,7 @@ export class ArkibPage {
   constructor(public navCtrl: NavController, 
     public modalCtrl: ModalController, 
     public viewCtrl: ViewController,
+    public loadingCtrl: PreloaderProvider, 
     public navParams: NavParams,
     public afDatabase: AngularFireDatabase) {
 
@@ -30,9 +32,11 @@ export class ArkibPage {
       { tarikh: "31/01/2018", title: "bas tiada pemandu kedua bagi perjalanan melebihi 4 jam"}
     ];
 
+    this.loadingCtrl.displayPreloader();
     this.aduanRef = afDatabase.list('/aduan', 
     ref => ref.orderByChild('arkib').equalTo("2"));
     this.aduan = this.aduanRef.valueChanges();
+    this.loadingCtrl.hidePreloader();
   }
   getKesalahanById(id){
     if (id == "1"){

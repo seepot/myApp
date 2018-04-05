@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import { EditPage } from '../edit/edit';
+import { PreloaderProvider } from '../../providers/preloader/preloader';
 
 @IonicPage()
 @Component({
@@ -14,8 +15,10 @@ export class DrafPage {
   kesalahan: Array<{ tarikh: string, title: string}>;
   aduanRef:AngularFireList<any>;
   aduan:Observable<any[]>;
+  //loading: any;
 
-  constructor(public navCtrl: NavController, 
+  constructor(public navCtrl: NavController,
+    public loadingCtrl: PreloaderProvider, 
     public navParams: NavParams, 
     public afDatabase: AngularFireDatabase) {
 
@@ -34,9 +37,14 @@ export class DrafPage {
       { tarikh: "31/01/2018", title: "bas tiada pemandu kedua bagi perjalanan melebihi 4 jam"}
     ];
 
+
+    this.loadingCtrl.displayPreloader();
+
     this.aduanRef = afDatabase.list('/aduan', 
     ref => ref.orderByChild('status').equalTo('Draf'));
     this.aduan = this.aduanRef.valueChanges();
+
+    this.loadingCtrl.hidePreloader();
 
   }
 

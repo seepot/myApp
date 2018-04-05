@@ -22,7 +22,7 @@ export class ListPage {
     private platform     : Platform,
     public modalCtrl: ModalController,
     public viewCtrl: ViewController,
-    private _LOADER      : PreloaderProvider,
+    public loadingCtrl: PreloaderProvider, 
     public afDatabase: AngularFireDatabase
   ) {
     this.kesalahan = [
@@ -33,11 +33,12 @@ export class ListPage {
       { tarikh: "24/01/2018", title: "tidak memakai tali pinggang keledar", status: "Hantar"},
       { tarikh: "31/01/2018", title: "bas tiada pemandu kedua bagi perjalanan melebihi 4 jam", status: "Hantar"}
     ];
-    
-    this.aduanRef = this.afDatabase.list('/aduan');
+    this.loadingCtrl.displayPreloader();
+    //this.aduanRef = this.afDatabase.list('/aduan');
     this.aduanRef = afDatabase.list('/aduan', 
     ref => ref.orderByChild('arkib').equalTo("1"));
     this.aduan = this.aduanRef.valueChanges();
+    this.loadingCtrl.hidePreloader();
   }
   /* ionViewDidEnter()
    {
