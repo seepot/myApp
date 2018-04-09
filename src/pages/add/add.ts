@@ -181,7 +181,7 @@ export class AddPage {
     //imageRef.putString(this.imageURI, firebase.storage.StringFormat.DATA_URL).then((snapshot)=> {
     //});
     console.log(this.imageURI);
-    /* imageRef.putString(this.imageURI, firebase.storage.StringFormat.DATA_URL).then((snapshot)=> {
+     imageRef.putString(this.imageURI, firebase.storage.StringFormat.DATA_URL).then((snapshot)=> {
       let uploadedImage = snapshot.downloadURL;
 
       const newAduan = this.aduanRef.push({});
@@ -200,7 +200,7 @@ export class AddPage {
       .then((data) => {
         this.loadingCtrl.hidePreloader();
       });
-    }); */
+    }); 
      // Do something here when the data is succesfully uploaded!
 
     
