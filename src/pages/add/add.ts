@@ -103,7 +103,7 @@ export class AddPage {
 
   //ionic cordova plugin add cordova-plugin-googlemaps --variable API_KEY_FOR_ANDROID="AIzaSyDAQcSQAmqhj9JXGzuqyKbEKXeVKFyFypQ" --variable API_KEY_FOR_IOS="AIzaSyBEvero1rsKgBvbTehtcH2x5B51l4PExqI"
  
-  getImage() {
+  /* getImage() {
     const options: CameraOptions = {
       quality: 100,
       destinationType: this.camera.DestinationType.FILE_URI,
@@ -117,7 +117,7 @@ export class AddPage {
       console.log(err);
       //this.presentToast(err);
     });
-  }
+  } */
 
   /* uploadFile() {
     let loader = this.loadingCtrl.create({
@@ -178,8 +178,10 @@ export class AddPage {
 
     // Create a reference to 'images/todays-date.jpg'
     const imageRef = storageRef.child(`images/${filename}.jpg`);
-
-    imageRef.putString(this.imageURI, firebase.storage.StringFormat.DATA_URL).then((snapshot)=> {
+    //imageRef.putString(this.imageURI, firebase.storage.StringFormat.DATA_URL).then((snapshot)=> {
+    //});
+    console.log(this.imageURI);
+    /* imageRef.putString(this.imageURI, firebase.storage.StringFormat.DATA_URL).then((snapshot)=> {
       let uploadedImage = snapshot.downloadURL;
 
       const newAduan = this.aduanRef.push({});
@@ -192,17 +194,18 @@ export class AddPage {
         lokasi: this.form.value.lokasi,
         nokenderaan: this.form.value.nokenderaan,
         catatan: this.form.value.catatan,
+        image: uploadedImage,
         status: "Draf"
       })
       .then((data) => {
         this.loadingCtrl.hidePreloader();
       });
-    });
+    }); */
      // Do something here when the data is succesfully uploaded!
 
     
 
-    this.navCtrl.setRoot(DrafPage);
+    //this.navCtrl.setRoot(DrafPage);
   }
 
   submit(){
@@ -269,12 +272,15 @@ export class AddPage {
         targetHeight: 96
       }).then((data) => {
         this.form.patchValue({ 'profilePic': 'data:image/jpg;base64,' + data });
+        this.imageURI = 'data:image/jpeg;base64,' + data;
+      console.log(this.imageURI);
       }, (err) => {
         alert('Unable to take photo');
       })
     } else {
       this.fileInput.nativeElement.click();
-    } 
+    }
+    
   }
 
   processWebImage(event) {
