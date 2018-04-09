@@ -7,7 +7,7 @@ import {Camera} from '@ionic-native/camera';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
 import { Geolocation } from '@ionic-native/geolocation';
-
+import { FormPage } from '../pages/form/form';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { LoginPage } from '../pages/login/login';
 import { SigninPage } from '../pages/signin/signin';
@@ -33,6 +33,7 @@ import { ModalviewPage } from '../pages/modalview/modalview';
 import { Test1Page } from '../pages/test1/test1';
 import { Form1Page } from '../pages/form1/form1';
 import { EditPage } from '../pages/edit/edit';
+import { EditprofilePage } from '../pages/editprofile/editprofile'; 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AngularFireModule } from 'angularfire2';
@@ -44,6 +45,8 @@ import { JsMapsProvider } from '../providers/js-maps/js-maps';
 import { NativeMapsProvider } from '../providers/native-maps/native-maps';
 import { PreloaderProvider } from '../providers/preloader/preloader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { DatabaseProvider } from '../providers/database/database';
+import { ImageProvider } from '../providers/image/image';
 
 @NgModule({
   declarations: [
@@ -72,7 +75,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     ModalviewPage,
     Test1Page,
     Form1Page,
-    EditPage
+    EditPage,
+    EditprofilePage,
+    FormPage
   ],
   imports: [
     BrowserModule,
@@ -108,7 +113,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     ModalviewPage,
     Test1Page,
     Form1Page,
-    EditPage
+    EditPage,
+    EditprofilePage,
+    FormPage
   ],
   providers: [
     StatusBar,
@@ -123,7 +130,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     JsMapsProvider,
     NativeMapsProvider,
     PreloaderProvider,
-    HttpClient
+    HttpClient,
+    DatabaseProvider,
+    ImageProvider
   ]
 })
 export class AppModule {

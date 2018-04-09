@@ -76,7 +76,7 @@ export class MyApp {
       () => {
         this.rootPage = WelcomePage;
       }
-);
+    );
   }
 
   openPage(page) {

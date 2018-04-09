@@ -5,13 +5,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
-
+import firebase from 'firebase';
 import { Observable } from 'rxjs/Observable'
 import { Geolocation } from '@ionic-native/geolocation';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { ConfirmationPage } from '../confirmation/confirmation';
 import { ListPage } from '../list/list';
 import { DrafPage } from '../draf/draf';
+import { PreloaderProvider } from '../../providers/preloader/preloader';
 
 @IonicPage()
 @Component({
@@ -43,7 +44,7 @@ export class AddPage {
     private geolocation: Geolocation,
     public navCtrl: NavController, 
     private camera: Camera,
-    public loadingCtrl: LoadingController,
+    public loadingCtrl: PreloaderProvider,
     public navParams: NavParams,
     public toastCtrl: ToastController,
     afDatabase: AngularFireDatabase
@@ -110,7 +111,8 @@ export class AddPage {
     }
   
     this.camera.getPicture(options).then((imageData) => {
-      this.imageURI = imageData;
+      this.imageURI = 'data:image/jpeg;base64,' + imageData;
+      console.log(this.imageURI);
     }, (err) => {
       console.log(err);
       //this.presentToast(err);
@@ -169,18 +171,36 @@ export class AddPage {
   }
  */
   save(){
-    const newAduan = this.aduanRef.push({});
+
+    let storageRef = firebase.storage().ref();
+    // Create a timestamp as filename
+    const filename = Math.floor(Date.now() / 1000);
+
+    // Create a reference to 'images/todays-date.jpg'
+    const imageRef = storageRef.child(`images/${filename}.jpg`);
+
+    imageRef.putString(this.imageURI, firebase.storage.StringFormat.DATA_URL).then((snapshot)=> {
+      let uploadedImage = snapshot.downloadURL;
+
+      const newAduan = this.aduanRef.push({});
  
-    newAduan.set({
-      id: newAduan.key,
-      idkesalahan: this.id,
-      tarikh: this.form.value.tarikh,
-      masa: this.form.value.masa,
-      lokasi: this.form.value.lokasi,
-      nokenderaan: this.form.value.nokenderaan,
-      catatan: this.form.value.catatan,
-      status: "Draf"
+      newAduan.set({
+        id: newAduan.key,
+        idkesalahan: this.id,
+        tarikh: this.form.value.tarikh,
+        masa: this.form.value.masa,
+        lokasi: this.form.value.lokasi,
+        nokenderaan: this.form.value.nokenderaan,
+        catatan: this.form.value.catatan,
+        status: "Draf"
+      })
+      .then((data) => {
+        this.loadingCtrl.hidePreloader();
+      });
     });
+     // Do something here when the data is succesfully uploaded!
+
+    
 
     this.navCtrl.setRoot(DrafPage);
   }

@@ -4,6 +4,9 @@
         <ion-icon name="menu"></ion-icon>
       </button>
       <ion-title>Profil</ion-title>
+      <ion-buttons end>
+        <button ion-button (click)="edit()"><ion-icon name="person"></ion-icon></button>
+        </ion-buttons>
     </ion-navbar>
   </ion-header>
 
@@ -19,18 +22,18 @@
           </ion-col>
         </ion-row>
       </ion-card>
-      <ion-list class="profile-detail">
-        <ion-row>
-          <ion-col no-padding>
-            <ion-item>
-              <h4>About Me</h4>
-              <p>Ali Abu</p>
-            </ion-item>
-          </ion-col>
-        </ion-row>    
+      <ion-list class="profile-detail" *ngFor="let p of user1 | async">
         <ion-item icon-left>
-          <h4><ion-icon name="mail"></ion-icon>Email Address</h4>
-          <p>aliabu@gmail.com</p>
+          <h4><ion-icon name="contact"></ion-icon>Nama</h4>
+          <p>{{p.nama}}</p>
+        </ion-item> 
+        <ion-item icon-left>
+          <h4><ion-icon name="card"></ion-icon>No MyKad</h4>
+          <p>{{p.mykad}}</p>
+        </ion-item> 
+        <ion-item icon-left>
+          <h4><ion-icon name="mail"></ion-icon>Alamat Emel</h4>
+          <p>{{p.emel}}</p>
         </ion-item>
     </ion-list>
 </ion-content>
