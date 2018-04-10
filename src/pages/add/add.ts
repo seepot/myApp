@@ -180,6 +180,8 @@ export class AddPage {
 
     // Create a reference to 'images/todays-date.jpg'
     const imageRef = storageRef.child(`images/${filename}.jpg`);
+
+    this.showSuccesfulUploadAlert();
     //imageRef.putString(this.imageURI, firebase.storage.StringFormat.DATA_URL).then((snapshot)=> {
     //});
     console.log(this.imageURI);
