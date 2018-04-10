@@ -230,7 +230,7 @@ export class AddPage {
   showSuccesfulUploadAlert() {
     let alert = this.alertCtrl.create({
       title: 'Uploaded!',
-      subTitle: 'Picture is uploaded to Firebase',
+      subTitle: this.imageURI,
       buttons: ['OK']
     });
     alert.present();
