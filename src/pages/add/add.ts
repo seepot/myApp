@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, ToastController, DateTime, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, 
+  ToastController, DateTime, ViewController, AlertController } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
@@ -47,6 +48,7 @@ export class AddPage {
     public loadingCtrl: PreloaderProvider,
     public navParams: NavParams,
     public toastCtrl: ToastController,
+    public alertCtrl: AlertController,
     afDatabase: AngularFireDatabase
 
   ) {
@@ -182,6 +184,7 @@ export class AddPage {
     //});
     console.log(this.imageURI);
      imageRef.putString(this.imageURI, firebase.storage.StringFormat.DATA_URL).then((snapshot)=> {
+      this.showSuccesfulUploadAlert();
       let uploadedImage = snapshot.downloadURL;
 
       const newAduan = this.aduanRef.push({});
@@ -220,6 +223,18 @@ export class AddPage {
     id: this.id};
     //console.log(this.form.value);
     this.navCtrl.push(ConfirmationPage, data);
+  }
+
+  showSuccesfulUploadAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Uploaded!',
+      subTitle: 'Picture is uploaded to Firebase',
+      buttons: ['OK']
+    });
+    alert.present();
+
+    // clear the previous photo data in the variable
+    //this.captureDataUrl = "";
   }
 
   findUserLocation(){
@@ -273,7 +288,7 @@ export class AddPage {
       }).then((data) => {
         this.form.patchValue({ 'profilePic': 'data:image/jpg;base64,' + data });
         this.imageURI = 'data:image/jpeg;base64,' + data;
-      console.log(this.imageURI);
+        console.log(this.imageURI);
       }, (err) => {
         alert('Unable to take photo');
       })
@@ -295,6 +310,7 @@ export class AddPage {
   }
 
   getProfileImageStyle() {
+    
     return 'url(' + this.form.controls['profilePic'].value + ')'
   }
 
